@@ -6,7 +6,8 @@ ENV GOSU_VERSION 1.11
 # Mirth Connect is run with user `connect`, uid = 1000
 # If you bind mount a volume from the host or a data container, 
 # ensure you use the same uid
-RUN useradd -u 1000 mirth
+# RUN useradd -u 1000 mirth 
+RUN adduser -D -u 1000 mirth
 
 # grab gosu for easy step-down from root
 #RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
