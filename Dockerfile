@@ -58,6 +58,8 @@ WORKDIR /opt/mirth-connect
 
 EXPOSE 8080 8443
 
+COPY mirth.properties /opt/mirth-connect/conf/
+
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
