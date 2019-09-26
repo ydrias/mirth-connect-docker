@@ -46,19 +46,20 @@ RUN set -eux; \
 
 VOLUME /opt/mirth-connect/appdata
 
+COPY mirth.properties /opt/mirth.properties
+
 RUN \
   cd /tmp && \
   wget http://downloads.mirthcorp.com/connect/$MIRTH_CONNECT_VERSION/mirthconnect-$MIRTH_CONNECT_VERSION-unix.tar.gz && \
   tar xvzf mirthconnect-$MIRTH_CONNECT_VERSION-unix.tar.gz && \
   rm -f mirthconnect-$MIRTH_CONNECT_VERSION-unix.tar.gz && \
   mv Mirth\ Connect/* /opt/mirth-connect/ && \
+  mv -f /opt/mirth.properties /opt/mirth-connect/conf/ && \
   chown -R mirth /opt/mirth-connect
 
 WORKDIR /opt/mirth-connect
 
-EXPOSE 8080 8443
-
-COPY mirth.properties /opt/mirth-connect/conf/
+EXPOSE 31316 31317
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]

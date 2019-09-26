@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mirth-svc
+  labels:
+    name: mirth-svc
+spec:
+  type: NodePort
+  ports:
+    - name: mirth-https
+      port: 31317
+      nodePort: 31317
+      targetPort: 31317
+    - name: mirth-http
+      port: 31316
+      nodePort: 31316
+      targetPort: 31316
+  selector:
+    app: mirth-connect

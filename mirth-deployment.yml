@@ -1,0 +1,25 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mirth-connect
+  labels:
+    app: mirth-connect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mirth-connect
+  template:
+    metadata:
+      labels:
+        app: mirth-connect
+    spec:
+      containers:
+      - name: mirth-connect
+        image: mirth-connect:3.8
+        imagePullPolicy : Never
+        ports:
+        - containerPort: 8080
+          name: mirth-http
+        - containerPort: 8443
+          name: mirth-https
